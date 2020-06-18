@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/gustylocuras/boards_up/issues"
   },
-  "homepage": "https://github.com/gustylocuras/boards_up#readme"
+  "homepage": "https://github.com/gustylocuras/boards_up#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.19"
+  }
 }
