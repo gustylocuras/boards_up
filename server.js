@@ -9,7 +9,7 @@ require('dotenv').config()
 
 //Database
 
-const PROJECT3_DB = process.env.MONGODB_URI;
+const PROJECT3_DB = process.env.PROJECT3_DB;
 const SECRET = process.env.SECRET;
 
 // Error / success
