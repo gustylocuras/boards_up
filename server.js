@@ -30,6 +30,9 @@ app.use(express.static('public'));
 const sessionController = require('./controllers/session_controller.js')
 app.use('/session', sessionController)
 
+const locationController = require('./controllers/locations.js')
+app.use('/location', locationController)
+
 
 app.get('/', (req, res) => {
   res.send('hello');
