@@ -26,6 +26,10 @@ app.use(session({
 app.use(express.json());
 app.use(express.static('public'));
 
+//controllers
+const sessionController = require('./controllers/session_controller.js')
+app.use('/session', sessionController)
+
 const locationsController = require('./controllers/locations.js')
 app.use('/location', locationsController);
 
