@@ -41,15 +41,39 @@ app.controller("MyController", ['$http', function($http) {
       })
     }
 
-//logout
+    //logout
     this.logout = function(){
-  $http({
-      url:'/session',
-      method:'DELETE'
-  }).then((response) => {
-      this.loggedInUser = false;
-  })
-}
+    $http({
+        url:'/session',
+        method:'DELETE'
+    }).then((response) => {
+        this.loggedInUser = false;
+    })
+  }
+
+  //DELETE
+  this.deleteBoard = (board) => {
+    $http({
+      method:'DELETE',
+      url:'/boards/' + board._id
+    }).then((response) => {
+      this.getBoard()
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  //EDIT - PUT
+  this.editBoard = (board) => {
+    $http({
+      method:'PUT',
+      url:'/boards/' + board._id
+    }).then((response) => {
+      this.getBoard()
+    }, (error) => {
+      console.log(error);
+    })
+  }
 
   // Create New Board
   this.createBoard = () => {
