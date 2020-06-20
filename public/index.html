@@ -9,7 +9,6 @@
   <body ng-controller="MyController as ctrl">
     <h1>Board's Up!</h1>
 
-
     <section ng-if="ctrl.loggedInUser === false">
       <h3>Sign Up</h3>
       <form ng-submit="ctrl.signup()">
@@ -28,7 +27,7 @@
     <section ng-if="ctrl.loggedInUser !== false">
       <h2>Welcome {{ctrl.loggedInUser.username}}</h2>
       <button ng-click="ctrl.logout()">Log Out</button>
-      <form>
+      <form ng-submit="ctrl.createBoard()">
         Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
         Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
         Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
@@ -36,11 +35,12 @@
         Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
         <input type="submit" value="Shred On">
       </form>
-    </section>
-    <div ng-repeat="board in ctrl.boards">
-      <h1>{{board.name}}</h1>
+      <div ng-repeat="board in ctrl.boards">
+        <h1>{{board.name}}</h1>
 
-    </div>
+      </div>
+    </section>
+
 
   </body>
 </html>

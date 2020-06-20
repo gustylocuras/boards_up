@@ -3,6 +3,7 @@ const app = angular.module("MyApp", []);
 app.controller("MyController", ['$http', function($http) {
   this.createForm = {}
   this.loggedInUser = false;
+  this.boards = [];
 
 //signup
   this.signup = function(){
@@ -34,6 +35,7 @@ app.controller("MyController", ['$http', function($http) {
       }).then((response) => {
         if(response.data.username){
           this.loggedInUser = response.data
+          this.getBoard()
         } else {
           this.loginUsername = null
           this.loginPassword = null
@@ -77,7 +79,7 @@ app.controller("MyController", ['$http', function($http) {
 
   // Create New Board
   this.createBoard = () => {
-    console.log(this.board);
+    console.log(this.boards);
     $http({
       method:'POST',
       url:'/boards',
@@ -95,6 +97,7 @@ app.controller("MyController", ['$http', function($http) {
       method:'GET',
       url:'/boards'
     }).then((response) => {
+      console.log(response.data);
       this.boards = response.data
     })
   }

@@ -4,13 +4,13 @@ const Locations = require('../models/locations.js')
 
 router.post('/', (req, res) => {
   Locations.create(req.body, (err, createdLocation) => {
-    console.log(createdLocation);
+    res.json(createdLocation);
   })
 })
 
 router.delete('/:id', (req, res) => {
   Locations.findByIdAndRemove(req.params.id, (err, deletedLocation) => {
-    console.log(deletedLocation);
+    res.json(deletedLocation);
   })
 })
 
@@ -19,13 +19,13 @@ router.put('/:id', (req,res) => {
     req.params.id,
     req.body,
     (err, updatedLocation) => {
-      console.log(updatedLocation);
+      res.json(updatedLocation);
     })
 })
 
 router.get('/', (req, res) => {
   Locations.find({}, (err, foundLocation) => {
-    console.log(foundLocation);
+    res.json(foundLocation);
   })
 })
 
