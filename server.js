@@ -26,6 +26,9 @@ app.use(session({
 app.use(express.json());
 app.use(express.static('public'));
 
+const locationsController = require('./controllers/locations.js')
+app.use('/location', locationsController);
+
 app.get('/', (req, res) => {
   res.send('hello');
 })
