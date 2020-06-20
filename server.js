@@ -30,7 +30,7 @@ app.use(express.static('public'));
 const sessionController = require('./controllers/session_controller.js')
 app.use('/session', sessionController)
 const usersController = require('./controllers/user_controller.js')
-app.use('/users', usersController)
+app.use('/users', usersController  )
 const locationController = require('./controllers/locations.js')
 app.use('/location', locationController)
 
