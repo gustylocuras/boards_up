@@ -4,6 +4,9 @@ app.controller("MyController", ['$http', function($http) {
   this.createForm = {}
   this.loggedInUser = false;
   this.boards = [];
+  this.newForm = false;
+  this.editForm = false;
+  this.index = null;
 
 //signup
   this.signup = function(){
@@ -53,6 +56,17 @@ app.controller("MyController", ['$http', function($http) {
     })
   }
 
+  // Toggle the Create New Spot Form
+  this.toggleNewForm = () => {
+    this.newForm = !this.newForm
+  }
+
+  // Toggle the Edit Spot form
+  this.toggleEditForm = (index) => {
+    this.editForm = !this.editForm
+    this.index = index
+  }
+
   //DELETE
   this.deleteBoard = (board) => {
     $http({
@@ -86,6 +100,7 @@ app.controller("MyController", ['$http', function($http) {
       data: this.createForm
     }).then((response) => {
       this.getBoard()
+      this.createForm = {}
     }, (error) => {
       console.log(error);
     })
