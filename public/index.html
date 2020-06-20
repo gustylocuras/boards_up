@@ -9,11 +9,11 @@
   <body ng-controller="MyController as ctrl">
     <h1>Board's Up!</h1>
     <form>
-      Location Name: <input type="text" placeholder="Name"><br/>
-      Description: <textarea name="description" rows="8" cols="80"></textarea><br/>
-      Link: <input type="text" placeholder="Google Maps Link"><br/>
-      Type: <input type="text" placeholder="Surf/Skate/Snow"><br/>
-      Capacity: <input type="number" placeholder="Capacity %"><br/>
+      Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
+      Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
+      Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
+      Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"><br/>
+      Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
       <input type="submit" value="Shred On">
     </form>
   </body>
