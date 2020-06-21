@@ -5,76 +5,42 @@
     <title>Board's Up</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js" charset="utf-8"></script>
     <script src="./js/app.js" charset="utf-8"></script>
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
   </head>
   <body ng-controller="MyController as ctrl">
     <h1>Board's Up!</h1>
 
     <section ng-if="ctrl.loggedInUser === false">
-
       <h3>Sign Up</h3>
-
       <form ng-submit="ctrl.signup()">
         Username: <input type="text" ng-model="ctrl.signupUsername"><br>
         Password: <input type="password" ng-model="ctrl.signupPassword"><br>
         <input type="submit"  value="sign up">
       </form>
-
       <h3>Log In</h3>
-
       <form ng-submit="ctrl.login()">
         Username: <input type="text" ng-model="ctrl.loginUsername"><br>
         Password: <input type="password" ng-model="ctrl.loginPassword"><br>
         <input type="submit"  value="Log In">
       </form>
+    </section>
+    <!-- All you want to add when user is logged in goes down here -->
+    <section ng-if="ctrl.loggedInUser !== false">
+      <h2>Welcome {{ctrl.loggedInUser.username}}</h2>
+      <button ng-click="ctrl.logout()">Log Out</button>
+      <form ng-submit="ctrl.createBoard()">
+        Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
+        Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
+        Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
+        Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"><br/>
+        Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
+        <input type="submit" value="Shred On">
+      </form>
+      <div ng-repeat="board in ctrl.boards">
+        <h1>{{board.name}}</h1>
 
+      </div>
     </section>
 
-    <!-- All you want to add when user is logged in goes down here -->
-
-    <div class="Conatiner">
-      <section ng-if="ctrl.loggedInUser !== false">
-
-        <h2>Welcome {{ctrl.loggedInUser.username}}</h2>
-
-        <button ng-click="ctrl.logout()">Log Out</button>
-        <button ng-click="ctrl.toggleNewForm()">Add Spot</button>
-
-        <form ng-submit="ctrl.createBoard()" ng-show="ctrl.newForm">
-          Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
-          Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
-          Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
-          Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"><br/>
-          Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
-          <input type="submit" value="Shred On">
-        </form>
-
-        <div ng-repeat="board in ctrl.boards">
-          <h1>{{board.name}}</h1>
-
-          <button ng-click="ctrl.deleteBoard(board)">Bail</button>
-          <button ng-click="ctrl.toggleEditForm($index)">Upgrade</button>
-
-          <form ng-if="$index === ctrl.index" ng-submit="ctrl.editBoard(board)" ng-show="ctrl.editForm">
-            Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
-            Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
-            Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
-            Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"><br/>
-            Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
-            <input type="submit" value="Update">
-          </form>
-
-        </div>
-
-      </section>
-
-    </div>
 
   </body>
 </html>
