@@ -6,7 +6,9 @@ const db = mongoose.connection;
 const session = require('express-session')
 require('dotenv').config()
 
+//API
 
+const API_KEY = process.env.API_KEY;
 //Database
 
 const PROJECT3_DB = process.env.PROJECT3_DB;
