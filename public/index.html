@@ -5,25 +5,39 @@
     <title>Board's Up</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js" charset="utf-8"></script>
     <script src="./js/app.js" charset="utf-8"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
   </head>
   <body ng-controller="MyController as ctrl">
     <h1>Board's Up!</h1>
 
     <section ng-if="ctrl.loggedInUser === false">
+
       <h3>Sign Up</h3>
+
       <form ng-submit="ctrl.signup()">
         Username: <input type="text" ng-model="ctrl.signupUsername"><br>
         Password: <input type="password" ng-model="ctrl.signupPassword"><br>
         <input type="submit"  value="sign up">
       </form>
+
       <h3>Log In</h3>
+
       <form ng-submit="ctrl.login()">
         Username: <input type="text" ng-model="ctrl.loginUsername"><br>
         Password: <input type="password" ng-model="ctrl.loginPassword"><br>
         <input type="submit"  value="Log In">
       </form>
+
     </section>
+
     <!-- All you want to add when user is logged in goes down here -->
+
     <div class="Conatiner">
       <section ng-if="ctrl.loggedInUser !== false">
 
