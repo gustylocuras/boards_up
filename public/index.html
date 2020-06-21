@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="MyApp">
+
   <head>
     <meta charset="utf-8">
     <title>Board's Up</title>
@@ -11,24 +12,26 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
   </head>
+
+  <div class="container">
+
   <body ng-controller="MyController as ctrl">
     <h1>Board's Up!</h1>
 
     <section ng-if="ctrl.loggedInUser === false">
 
-      <h3>Sign Up</h3>
+      <button ng-click="ctrl.toggleSignUp()">Sign Up</button>
 
-      <form ng-submit="ctrl.signup()">
+      <form ng-submit="ctrl.signup()" ng-show="ctrl.signUpForm">
         Username: <input type="text" ng-model="ctrl.signupUsername"><br>
         Password: <input type="password" ng-model="ctrl.signupPassword"><br>
         <input type="submit"  value="sign up">
       </form>
 
-      <h3>Log In</h3>
+      <button ng-click="ctrl.toggleLogin()">Log In</button>
 
-      <form ng-submit="ctrl.login()">
+      <form ng-submit="ctrl.login()" ng-show="ctrl.loginForm">
         Username: <input type="text" ng-model="ctrl.loginUsername"><br>
         Password: <input type="password" ng-model="ctrl.loginPassword"><br>
         <input type="submit"  value="Log In">
@@ -38,7 +41,7 @@
 
     <!-- All you want to add when user is logged in goes down here -->
 
-    <div class="Conatiner">
+
       <section ng-if="ctrl.loggedInUser !== false">
 
         <h2>Welcome {{ctrl.loggedInUser.username}}</h2>
@@ -55,8 +58,23 @@
           <input type="submit" value="Shred On">
         </form>
 
-        <div ng-repeat="board in ctrl.boards">
-          <h1>{{board.name}}</h1>
+        <div ng-repeat="board in ctrl.boards" class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">
+              {{board.name}}
+              <i class="material-icons right">+</i>
+            </span>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">
+              {{baord.name}}
+              <i class="material-icons right">X</i>
+              <p>{{board.description}}</p>
+            </span>
+          </div>
 
           <button ng-click="ctrl.deleteBoard(board)">Bail</button>
           <button ng-click="ctrl.toggleEditForm($index)">Upgrade</button>
