@@ -130,4 +130,16 @@ app.controller("MyController", ['$http', function($http) {
   }
 
   this.getBoard()
+
+  //saves user on refresh
+
+  $http({
+    method:'GET',
+    url:'/session'
+}).then((response) => {
+  if(response.data.username){
+        this.loggedInUser = response.data;
+    }
+})
+
 }]) // END OF APP.CONTROLLER

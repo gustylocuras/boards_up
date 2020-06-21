@@ -6,45 +6,36 @@
     <title>Board's Up</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js" charset="utf-8"></script>
     <script src="./js/app.js" charset="utf-8"></script>
-<<<<<<< HEAD
-=======
-
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
->>>>>>> 34bb5b54fbb9cd112bb239d64ae48d056a6bf546
   </head>
 
-  <div class="container">
+
 
   <body ng-controller="MyController as ctrl">
+
     <h1>Board's Up!</h1>
 
     <section ng-if="ctrl.loggedInUser === false">
-<<<<<<< HEAD
       <h3>Sign Up</h3>
       <form ng-submit="ctrl.signup()">
-=======
 
       <button ng-click="ctrl.toggleSignUp()">Sign Up</button>
 
       <form ng-submit="ctrl.signup()" ng-show="ctrl.signUpForm">
->>>>>>> 34bb5b54fbb9cd112bb239d64ae48d056a6bf546
         Username: <input type="text" ng-model="ctrl.signupUsername"><br>
         Password: <input type="password" ng-model="ctrl.signupPassword"><br>
         <input type="submit"  value="sign up">
       </form>
-<<<<<<< HEAD
+
       <h3>Log In</h3>
       <form ng-submit="ctrl.login()">
-=======
 
       <button ng-click="ctrl.toggleLogin()">Log In</button>
 
       <form ng-submit="ctrl.login()" ng-show="ctrl.loginForm">
->>>>>>> 34bb5b54fbb9cd112bb239d64ae48d056a6bf546
         Username: <input type="text" ng-model="ctrl.loginUsername"><br>
         Password: <input type="password" ng-model="ctrl.loginPassword"><br>
         <input type="submit"  value="Log In">
@@ -64,11 +55,8 @@
       </form>
       <div ng-repeat="board in ctrl.boards">
         <h1>{{board.name}}</h1>
-
-<<<<<<< HEAD
       </div>
     </section>
-=======
 
       <section ng-if="ctrl.loggedInUser !== false">
 
@@ -119,8 +107,6 @@
         </div>
 
       </section>
->>>>>>> 34bb5b54fbb9cd112bb239d64ae48d056a6bf546
-
 
   </body>
 </html>
