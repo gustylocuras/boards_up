@@ -7,6 +7,8 @@ app.controller("MyController", ['$http', function($http) {
   this.newForm = false;
   this.editForm = false;
   this.index = null;
+  this.loginForm = false;
+  this.signUpForm = false;
 
 //signup
   this.signup = function(){
@@ -59,6 +61,16 @@ app.controller("MyController", ['$http', function($http) {
   // Toggle the Create New Spot Form
   this.toggleNewForm = () => {
     this.newForm = !this.newForm
+  }
+
+  // Toggle Login Form
+  this.toggleLogin = () => {
+    this.loginForm = !this.loginForm
+  }
+
+  // Toggle Sign Up Form
+  this.toggleSignUp = () => {
+    this.signUpForm = !this.signUpForm
   }
 
   // Toggle the Edit Spot form
