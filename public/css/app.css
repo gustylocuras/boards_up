@@ -3,3 +3,13 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.buttonOne {
+  border-radius: 100%;
+}
+
+.filter {
+  margin: 10px;
+  justify-content: space-between;
+
+}
