@@ -7,7 +7,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js" charset="utf-8"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-O5h2pqDtNc4XLL9Obqm-hnINUM2WlLU" defer  ></script>
-    <script src="/js/maps.js" charset="utf-8"></script>
+
     <script src="./js/app.js" charset="utf-8"></script>
 
     <!-- Compiled and minified CSS -->
@@ -90,12 +90,12 @@
                     <form id="calculate-route" name="calculate-route" ng-submit="ctrl.calculate()">
                       <label for="from">From:</label>
                       <input ng-model="ctrl.from" type="text" id="from" name="from" required="required" placeholder="An address" size="30" />
-                      <a id="from-link" href="#">Get my position</a>
+                      <a ng-click="ctrl.findLocal()" id="from-link" href="#">Get my position</a>
                       <br />
 
                       <label for="to">To:</label>
                       <input ng-model="ctrl.to"  type="text" id="to" name="to" required="required" placeholder="Another address" size="30" />
-                      <a ng-click="ctrl.findLocal()"id="to-link" href="#">Get my position</a>
+                      <a id="to-link" href="#">Get my position</a>
                       <br />
 
                       <input type="submit" />

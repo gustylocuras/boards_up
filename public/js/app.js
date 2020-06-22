@@ -10,32 +10,31 @@ app.controller("MyController", ['$http', function($http) {
     this.loginForm = false;
     this.signUpForm = false;
     this.showDirections = false;
-    this.from = ''
-    this.to = ''
-
+    this.from =
+    this.to =
+    this.myAddress
       if (typeof navigator.geolocation == "undefined") {
                 console.error("Your browser doesn't support the Geolocation API");
                 return;
               }
 
-                this.findLocal = function(event) {
-                event.preventDefault();
-                let addressId = this.id.substring(0, this.id.indexOf("-"));
-                console.log(addressId);
+                this.findLocal = () => {
 
-                navigator.geolocation.getCurrentPosition(function(position) {
+                navigator.geolocation.getCurrentPosition((position) => {
                   let geocoder = new google.maps.Geocoder();
                   geocoder.geocode({
                     "location": new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
                   },
-                  function(results, status) {
-                    if (status == google.maps.GeocoderStatus.OK)
-                      document.getElementById("from").val(results[0].formatted_address)
-                    else
+                  (results, status) => {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                      console.log(results);
+                      this.myAddress = results[0].formatted_address
+                      document.getElementById("from").value = this.myAddress
+                    } else {
                       console.error("Unable to retrieve your address<br />");
-                  });
+                  }});
                 },
-                function(positionError){
+                (positionError) => {
                   console.error("Error: " + positionError.message + "<br />");
                 },
                 {
