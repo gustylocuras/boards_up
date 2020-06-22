@@ -55,6 +55,13 @@
         <button ng-click="ctrl.logout()">Log Out</button>
         <button ng-click="ctrl.toggleNewForm()">Add Spot</button>
 
+        <div class="filter">
+        Skate:  <button type="button" ng-model="type" name="skate"></button>
+          Surf: <button type="button" ng-model="type" name="surf"></button>
+          Snow: <button type="button" ng-model="type" name="snow"></button>
+
+        </div>
+
         <form ng-submit="ctrl.createBoard()" ng-show="ctrl.newForm">
           Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
           Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
