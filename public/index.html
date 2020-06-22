@@ -16,31 +16,40 @@
     <!-- Adding Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Link CSS to HTML -->
     <link rel="stylesheet" href="/css/app.css">
+
+    <!-- Let browser know website is optimized for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   </head>
 
 
 
   <body ng-controller="MyController as ctrl">
+    <nav>
+      <div class="nav-wrapper blue darken-4">
+        <a href="#" class="brand-logo center">Board's Up!</a>
+      </div>
+    </nav>
     <div class="container">
-      <h1>Board's Up!</h1>
 
-      <section ng-if="ctrl.loggedInUser === false">
 
-        <button ng-click="ctrl.toggleSignUp()">Sign Up</button>
+      <section class="center login" ng-if="ctrl.loggedInUser === false">
 
-        <form ng-submit="ctrl.signup()" ng-show="ctrl.signUpForm">
+        <button class="waves-effect waves-light btn-large" ng-click="ctrl.toggleSignUp()">Sign Up</button>
+
+        <form ng-submit="ctrl.signup()" ng-show="ctrl.signUpForm" class="form">
           Username: <input type="text" ng-model="ctrl.signupUsername"><br>
           Password: <input type="password" ng-model="ctrl.signupPassword"><br>
-          <input type="submit"  value="sign up">
+          <button type="submit"><i class="material-icons">navigate_next</i></button>
         </form>
 
-        <button ng-click="ctrl.toggleLogin()">Log In</button>
+        <button class="waves-effect waves-light btn-large" ng-click="ctrl.toggleLogin()">Log In</button>
 
-        <form ng-submit="ctrl.login()" ng-show="ctrl.loginForm">
+        <form ng-submit="ctrl.login()" ng-show="ctrl.loginForm" class="form">
           Username: <input type="text" ng-model="ctrl.loginUsername"><br>
           Password: <input type="password" ng-model="ctrl.loginPassword"><br>
-          <input type="submit"  value="Log In">
+          <button type="submit"><i class="material-icons">send</i></button>
         </form>
 
       </section>
@@ -69,41 +78,49 @@
           Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
           Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"><br/>
           Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
-          <input type="submit" value="Shred On">
+          <input class="btn waves-effect waves-light" type="submit" value="Shred On">
         </form>
 
+
         <div class="board-container">
-          <div ng-repeat="board in ctrl.boards" class="card" style="width: 18rem">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">
-                {{board.name}}
-                <a class="btn-floating waves-effect waves-light red"><i class="material-icons right">add</i></a>
-              </span>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">
-                {{baord.name}}
-                <i class="material-icons right">clear</i>
-                <p>{{board.description}}</p>
-              </span>
+
+            <div ng-repeat="board in ctrl.boards" class="card z-depth-4" style="width: 18rem">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
+              </div>
+
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">
+                  {{board.name}}
+                  <i class="material-icons right">more_vert</i>
+                </span>
+              </div>
+
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">
+                  {{baord.name}}
+                  <i class="material-icons right">clear</i>
+                  <p>{{board.description}}</p>
+                </span>
+              </div>
+
+              <div class="edit-button center-align">
+                <button class="waves-effect waves-light btn-small" ng-click="ctrl.deleteBoard(board)">Bail</button>
+                <button class="waves-effect waves-light btn-small" ng-click="ctrl.toggleEditForm($index)">Upgrade</button>
+              </div>
+
+
+              <form ng-if="$index === ctrl.index" ng-submit="ctrl.editBoard(board)" ng-show="ctrl.editForm">
+                Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
+                Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
+                Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
+                Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"><br/>
+                Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
+                <input type="submit" value="Update">
+              </form>
+
             </div>
 
-            <button ng-click="ctrl.deleteBoard(board)">Bail</button>
-            <button ng-click="ctrl.toggleEditForm($index)">Upgrade</button>
-
-            <form ng-if="$index === ctrl.index" ng-submit="ctrl.editBoard(board)" ng-show="ctrl.editForm">
-              Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
-              Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
-              Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
-              Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"><br/>
-              Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
-              <input type="submit" value="Update">
-            </form>
-
-          </div>
         </div>
 
 
