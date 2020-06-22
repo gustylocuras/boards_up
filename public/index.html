@@ -65,19 +65,40 @@
         <button ng-click="ctrl.toggleNewForm()">Add Spot</button>
 
         <div class="filter">
-          <label for="snow">Snow spots</label>
-          <input type="radio" name="type" value="type:snow" ng-model='order'/>
-          <label for="skate">Skate spots</label>
-          <input type="radio" name="type" value="type:skate" ng-model='order'/>
-          <label for="surf">Surf spots</label>
-          <input type="radio" name="type" value="type:surf" ng-model= 'order'>
+          <label for="snow">Snow</label>
+          <input type="radio" name="type" value="type:snow" ng-model="type" />
+          <label for="skate">Skate</label>
+          <input type="radio" name="type" value="type:skate" ng-model="type" />
+          <label for="surf">Surf</label>
+          <input type="radio" name="type" value="type:surf" ng-model="type" >
         </div>
+
+
+            <label>
+              <input name="group1" type="radio" ng-model="type"/>
+              <span>Snow</span>
+            </label>
+            <label>
+              <input name="group1" type="radio" ng-model="type"/>
+              <span>Skate</span>
+            </label>
+            <label>
+              <input name="group1" type="radio" ng-model="type"/>
+              <span>Surf</span>
+            </label>
+
 
         <form ng-submit="ctrl.createBoard()" ng-show="ctrl.newForm">
           Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
           Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
           Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
-          Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"><br/>
+          Type:
+            <select ng-model="ctrl.createForm.type">
+              <option value="Surf">Surf</option>
+              <option value="Skate">Skate</option>
+              <option value="Snow">Snow</option>
+            </select>
+            <!-- <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"> -->
           Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
           <input class="btn waves-effect waves-light" type="submit" value="Shred On">
         </form>
@@ -85,7 +106,7 @@
 
         <div class="board-container">
 
-            <div ng-repeat="board in ctrl.boards | orderBy: type" class="card z-depth-4" style="width: 18rem">
+            <div ng-repeat="board in ctrl.boards | filter: type" class="card z-depth-4" style="width: 18rem">
               <div class="card-image waves-effect waves-block waves-light">
                 <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
               </div>

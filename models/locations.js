@@ -3,10 +3,7 @@ const locationSchema = new mongoose.Schema({
   name: String,
   description: String,
   link: String,
-  type: {
-      type: ["surf", "skate", "snow"],
-      default: "surf"
-  },
+  type: String,
   capacity: Number,
 })
 
