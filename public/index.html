@@ -65,11 +65,12 @@
         <button ng-click="ctrl.toggleNewForm()">Add Spot</button>
 
         <div class="filter">
-          Filter:<br/>
-          <button class="buttonOne" type="button" ng-model="type" name="skate">Skate</button><br/>
-         <button class="buttonOne" type="button" ng-model="type" name="surf">Surf</button><br/>
-         <button class="buttonOne" type="button" ng-model="type" name="snow">Snow</button>
-
+          <label for="snow">Snow spots</label>
+          <input type="radio" name="type" value="type:snow" ng-model='order'/>
+          <label for="skate">Skate spots</label>
+          <input type="radio" name="type" value="type:skate" ng-model='order'/>
+          <label for="surf">Surf spots</label>
+          <input type="radio" name="type" value="type:surf" ng-model= 'order'>
         </div>
 
         <form ng-submit="ctrl.createBoard()" ng-show="ctrl.newForm">
@@ -84,7 +85,7 @@
 
         <div class="board-container">
 
-            <div ng-repeat="board in ctrl.boards" class="card z-depth-4" style="width: 18rem">
+            <div ng-repeat="board in ctrl.boards | orderBy: type" class="card z-depth-4" style="width: 18rem">
               <div class="card-image waves-effect waves-block waves-light">
                 <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
               </div>
