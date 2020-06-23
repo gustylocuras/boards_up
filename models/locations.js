@@ -4,6 +4,7 @@ const locationSchema = new mongoose.Schema({
   description: String,
   link: String,
   type: String,
+  address: String,
   capacity: Number,
   img:String
 })
