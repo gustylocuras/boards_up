@@ -13,11 +13,12 @@ app.controller("MyController", ['$http', function($http) {
     this.from = ''
     this.to = ''
     this.myAddress
+    //test for browser geolocation
       if (typeof navigator.geolocation == "undefined") {
                 console.error("Your browser doesn't support the Geolocation API");
                 return;
               }
-
+              //Set geocoding for user's location
                 this.findLocal = () => {
 
                 navigator.geolocation.getCurrentPosition((position) => {
@@ -39,7 +40,7 @@ app.controller("MyController", ['$http', function($http) {
                 },
                 {
                   enableHighAccuracy: true,
-                  timeout: 10 * 1000 // 10 seconds
+                  timeout: 10000 // 10 seconds
                 });
               };
 
@@ -59,17 +60,18 @@ app.controller("MyController", ['$http', function($http) {
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-    // Draw the map
+    // Instance map
     let mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
-
+    //Instance Direction Service
     let directionsService = new google.maps.DirectionsService();
+    //Instance Direction Request
     let directionsRequest = {
       origin: from,
       destination: to,
       travelMode: google.maps.DirectionsTravelMode.DRIVING,
       unitSystem: google.maps.UnitSystem.IMPERIAL
     };
-
+    //Route = request + callback + renderer
     directionsService.route(
       directionsRequest,
       (response, status) => {
@@ -87,7 +89,7 @@ app.controller("MyController", ['$http', function($http) {
     }
 
 
-
+            //callback to calculateRoute with data from form (geocode) and address saved on model
             this.calculate = function() {
               calculateRoute(this.from, this.boards[this.index].address);
               console.log(this.boards[this.index].address);
