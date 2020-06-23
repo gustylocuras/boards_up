@@ -41,6 +41,8 @@ app.use('/users', usersController)
 const locationController = require('./controllers/locations.js')
 app.use('/boards', locationController)
 
+const locationsController = require('./controllers/locations.js')
+app.use('/location', locationsController);
 
 app.get('/', (req, res) => {
   res.send('hello');

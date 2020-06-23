@@ -106,7 +106,7 @@
         <div class="board-container">
 
 
-          <div ng-repeat="board in ctrl.boards" class="card" style="width: 18rem">
+          <div ng-repeat="board in ctrl.boards | filter: searchBox" class="card" style="width: 18rem">
             <div class="card-image waves-effect waves-block waves-light">
               <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
             </div>
