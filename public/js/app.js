@@ -10,8 +10,8 @@ app.controller("MyController", ['$http', function($http) {
     this.loginForm = false;
     this.signUpForm = false;
     this.showDirections = false;
-    this.from =
-    this.to =
+    this.from = ''
+    this.to = ''
     this.myAddress
       if (typeof navigator.geolocation == "undefined") {
                 console.error("Your browser doesn't support the Geolocation API");
@@ -54,10 +54,10 @@ app.controller("MyController", ['$http', function($http) {
 
     function calculateRoute(from, to){
        myOptions = {
-      zoom: 10,
-      center: new google.maps.LatLng(34.0522,-118.2437),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
+          zoom: 10,
+          center: new google.maps.LatLng(34.0522,-118.2437),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
 
     // Draw the map
     let mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
@@ -72,25 +72,25 @@ app.controller("MyController", ['$http', function($http) {
 
     directionsService.route(
       directionsRequest,
-      function(response, status)
-      {
-        if (status == google.maps.DirectionsStatus.OK)
-        {
+      (response, status) => {
+        if (status == google.maps.DirectionsStatus.OK) {
           new google.maps.DirectionsRenderer({
             map: mapObject,
             directions: response
           });
         }
-        else
-        console.error("Unable to retrieve your route<br />");
-      }
-    );
+        else {
+        console.error("Unable to retrieve your route");
+          }
+        }
+      );
     }
 
 
 
-            this.calculate = function(event) {
+            this.calculate = function() {
               calculateRoute(this.from, this.to);
+              console.log(this.from);
             };
 
 
