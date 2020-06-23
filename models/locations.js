@@ -5,6 +5,7 @@ const locationSchema = new mongoose.Schema({
   link: String,
   type: String,
   capacity: Number,
+  img:String
 })
 
 const Locations = mongoose.model('Location', locationSchema);

@@ -37,3 +37,15 @@
   height: 100px;
   width: 100px;
 }
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout-edit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

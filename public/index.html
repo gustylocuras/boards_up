@@ -62,42 +62,26 @@
 
       <section ng-if="ctrl.loggedInUser !== false">
 
-        <h2>Welcome {{ctrl.loggedInUser.username}}</h2>
+        <div class="welcome">
+          <h2>Welcome {{ctrl.loggedInUser.username}}</h2>
 
-        <button ng-click="ctrl.logout()">Log Out</button>
-        <button ng-click="ctrl.toggleNewForm()">Add Spot</button>
+          <div class="logout-edit">
+            <button class="waves-effect waves-light btn" ng-click="ctrl.logout()">Log Out</button>
+            <button class="waves-effect waves-light btn" ng-click="ctrl.toggleNewForm()">Add Spot</button>
+          </div>
 
+        </div>
 
-
-
-            <label>
-              <input name="group1" type="radio" ng-model="type"/>
-              <span>Snow</span>
-            </label>
-            <label>
-              <input name="group1" type="radio" ng-model="type"/>
-              <span>Skate</span>
-            </label>
-            <label>
-              <input name="group1" type="radio" ng-model="type"/>
-              <span>Surf</span>
-            </label>
 
             <label for=" Search by">
-              <input type="text" placeholder="Spot type" ng-model='searchBox'>
+              <input type="text" placeholder="Surf/Skate/Snow" ng-model='searchBox'>
             </label>
 
         <form ng-submit="ctrl.createBoard()" ng-if="ctrl.newForm">
           Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
           Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
           Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
-          Type:
-            <select ng-model="ctrl.createForm.type">
-              <option value="Surf">Surf</option>
-              <option value="Skate">Skate</option>
-              <option value="Snow">Snow</option>
-            </select>
-            <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type">
+          Type:<input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type">
           Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
           <input class="btn waves-effect waves-light" type="submit" value="Shred On">
         </form>
@@ -108,7 +92,7 @@
 
             <div ng-repeat="board in ctrl.boards | filter: searchBox" class="card z-depth-4" style="width: 18rem">
               <div class="card-image waves-effect waves-block waves-light">
-                <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
+                <img src="{{board.img}}" class="activator">
               </div>
 
               <div class="card-content">
@@ -153,12 +137,13 @@
               </div>
 
               <div class="container">
-                <form ng-if="$index === ctrl.index" ng-submit="ctrl.editBoard(board)" ng-if="ctrl.editForm">
-                  Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name" ng-value="ctrl.createForm.name"><br/>
-                  Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description" ng-value="ctrl.createForm.description"></textarea><br/>
-                  Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link" ng-value="ctrl.createForm.link"><br/>
-                  Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type" ng-value="ctrl.createForm.type"><br/>
-                  Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity" ng-value="ctrl.createForm.capacity"><br/>
+                <form ng-if="$index === ctrl.index" ng-submit="ctrl.editBoard(board)" ng-show="ctrl.editForm">
+                  Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name" ng-value="{{board.name}}"><br/>
+                  Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description" ng-value="{{board.description}}"></textarea><br/>
+                  Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link" ng-value="{{board.link}}"><br/>
+                  Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type" ng-value="{{board.type}}"><br/>
+                  Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity" ng-value="{{board.capacity}}"><br/>
+                  Image Link: <input type="text" ng-model="ctrl.createForm.img" ng-value="{{board.img}}"><br/>
                   <input type="submit" value="Update">
                 <br/>
                 <br/>

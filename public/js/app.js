@@ -187,7 +187,8 @@ app.controller("MyController", ['$http', function($http) {
     this.editBoard = (board) => {
       $http({
         method:'PUT',
-        url:'/boards/' + board._id
+        url:'/boards/' + board._id,
+        data: this.createForm
       }).then((response) => {
         this.getBoard()
       }, (error) => {
