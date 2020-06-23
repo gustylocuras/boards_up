@@ -31,11 +31,11 @@ app.controller("MyController", ['$http', function($http) {
                       this.myAddress = results[0].formatted_address
                       document.getElementById("from").value = this.myAddress
                     } else {
-                      console.error("Unable to retrieve your address<br />");
+                      console.error("Unable to retrieve your address");
                   }});
                 },
                 (positionError) => {
-                  console.error("Error: " + positionError.message + "<br />");
+                  console.error("Error: " + positionError.message);
                 },
                 {
                   enableHighAccuracy: true,
@@ -89,8 +89,8 @@ app.controller("MyController", ['$http', function($http) {
 
 
             this.calculate = function() {
-              calculateRoute(this.from, this.to);
-              console.log(this.from);
+              calculateRoute(this.from, this.boards[this.index].address);
+              console.log(this.boards[this.index].address);
             };
 
 

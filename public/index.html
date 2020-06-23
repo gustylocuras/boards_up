@@ -98,6 +98,7 @@
               <option value="Snow">Snow</option>
             </select>
             <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type">
+          Address: <input type="text" ng-model="ctrl.createForm.address"  placeholder="123 Main St, City, State 0000">
           Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
           <input class="btn waves-effect waves-light" type="submit" value="Shred On">
         </form>
@@ -124,6 +125,8 @@
                   <i class="material-icons right">clear</i>
                   <p>{{board.description}}</p>
                   <button ng-click="ctrl.toggleDirection($index)" type="button" name="button">Get Directions</button>
+                  <br>
+                  <br>
                   <div ng-if="ctrl.showDirections"class="container">
                     <section ng-if="$index === ctrl.index">
                       <div id="map"></div>
@@ -133,10 +136,10 @@
                         <a ng-click="ctrl.findLocal()" id="from-link" href="#">Get my position</a>
                         <br />
 
-                        <label for="to">To:</label>
-                        <input ng-model="ctrl.to"  type="text" id="to" name="to" required="required" placeholder="Another address" size="30" />
-                        <a id="to-link" href="#">Get my position</a>
-                        <br />
+                        <!-- <label for="to">To:</label>
+                        <input ng-model="ctrl.to" value= "{{board.address}}"  type="text" id="to" name="to" required="required"  size="30" />
+
+                        <br /> -->
 
                         <input type="submit" />
                         <input type="reset" />
@@ -153,11 +156,12 @@
               </div>
 
               <div class="container">
-                <form ng-if="$index === ctrl.index" ng-submit="ctrl.editBoard(board)" ng-show="ctrl.editForm">
+                <form ng-if="$index === ctrl.index" ng-submit="ctrl.editBoard(board)" ng-show="ctrl.editForm" ng-if="ctrl.editForm">
                   Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name" ng-value="ctrl.createForm.name"><br/>
                   Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
                   Link: <input type="text" placeholder="Google Maps Link" ng-model="ctrl.createForm.link"><br/>
                   Type: <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"><br/>
+                  Address: <input type="text" ng-model="ctrl.createForm.address"  placeholder="123 Main St, City, State 0000">
                   Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
                   <input type="submit" value="Update">
                 <br/>
