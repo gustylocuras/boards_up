@@ -64,14 +64,7 @@
         <button ng-click="ctrl.logout()">Log Out</button>
         <button ng-click="ctrl.toggleNewForm()">Add Spot</button>
 
-        <div class="filter">
-          <label for="snow">Snow</label>
-          <input type="radio" name="type" value="type:snow" ng-model="type" />
-          <label for="skate">Skate</label>
-          <input type="radio" name="type" value="type:skate" ng-model="type" />
-          <label for="surf">Surf</label>
-          <input type="radio" name="type" value="type:surf" ng-model="type" >
-        </div>
+
 
 
             <label>
@@ -87,6 +80,9 @@
               <span>Surf</span>
             </label>
 
+            <label for=" Search by">
+              <input type="text" placeholder="Spot type" ng-model='searchBox'>
+            </label>
 
         <form ng-submit="ctrl.createBoard()" ng-show="ctrl.newForm">
           Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
@@ -98,7 +94,7 @@
               <option value="Skate">Skate</option>
               <option value="Snow">Snow</option>
             </select>
-            <!-- <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type"> -->
+            <input type="text" placeholder="Surf/Skate/Snow" ng-model="ctrl.createForm.type">
           Capacity: <input type="number" placeholder="Capacity %" ng-model="ctrl.createForm.capacity"><br/>
           <input class="btn waves-effect waves-light" type="submit" value="Shred On">
         </form>
@@ -106,7 +102,7 @@
 
         <div class="board-container">
 
-            <div ng-repeat="board in ctrl.boards | filter: type" class="card z-depth-4" style="width: 18rem">
+            <div ng-repeat="board in ctrl.boards | filter: searchBox" class="card z-depth-4" style="width: 18rem">
               <div class="card-image waves-effect waves-block waves-light">
                 <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
               </div>
