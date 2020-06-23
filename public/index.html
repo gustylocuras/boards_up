@@ -106,46 +106,6 @@
         <div class="board-container">
 
 
-          <div ng-repeat="board in ctrl.boards" class="card" style="width: 18rem">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">
-                {{board.name}}
-                <a class="btn-floating waves-effect waves-light red"><i class="material-icons right">add</i></a>
-              </span>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">
-                {{baord.name}}
-                <i class="material-icons right">clear</i>
-                <p>{{board.description}}</p>
-                <button ng-click="ctrl.toggleDirection($index)" type="button" name="button">Get Directions</button>
-                <div ng-if="ctrl.showDirections"class="container">
-                  <section ng-if="$index === ctrl.index">
-                    <div id="map"></div>
-                    <form id="calculate-route" name="calculate-route" ng-submit="ctrl.calculate()">
-                      <label for="from">From:</label>
-                      <input ng-model="ctrl.from" type="text" id="from" name="from" required="required" placeholder="An address" size="30" />
-                      <a ng-click="ctrl.findLocal()" id="from-link" href="#">Get my position</a>
-                      <br />
-
-                      <label for="to">To:</label>
-                      <input ng-model="ctrl.to"  type="text" id="to" name="to" required="required" placeholder="Another address" size="30" />
-                      <a id="to-link" href="#">Get my position</a>
-                      <br />
-
-                      <input type="submit" />
-                      <input type="reset" />
-                    </form>
-                  </section>
-
-                </div>
-              </span>
-            </div>
-
-
             <div ng-repeat="board in ctrl.boards | filter: searchBox" class="card z-depth-4" style="width: 18rem">
               <div class="card-image waves-effect waves-block waves-light">
                 <img src="https://images.unsplash.com/photo-1465220183275-1faa863377e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="activator">
@@ -163,6 +123,27 @@
                   {{baord.name}}
                   <i class="material-icons right">clear</i>
                   <p>{{board.description}}</p>
+                  <button ng-click="ctrl.toggleDirection($index)" type="button" name="button">Get Directions</button>
+                  <div ng-if="ctrl.showDirections"class="container">
+                    <section ng-if="$index === ctrl.index">
+                      <div id="map"></div>
+                      <form id="calculate-route" name="calculate-route" ng-submit="ctrl.calculate()">
+                        <label for="from">From:</label>
+                        <input ng-model="ctrl.from" type="text" id="from" name="from" required="required" placeholder="An address" size="30" />
+                        <a ng-click="ctrl.findLocal()" id="from-link" href="#">Get my position</a>
+                        <br />
+
+                        <label for="to">To:</label>
+                        <input ng-model="ctrl.to"  type="text" id="to" name="to" required="required" placeholder="Another address" size="30" />
+                        <a id="to-link" href="#">Get my position</a>
+                        <br />
+
+                        <input type="submit" />
+                        <input type="reset" />
+                      </form>
+                    </section>
+
+                  </div>
                 </span>
               </div>
 
