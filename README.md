@@ -4,9 +4,13 @@ https://boardsup.herokuapp.com/
 
 # Technologies used:
  -JavaScript
+ 
  -AngularJS
+ 
  -MongoDB
+ 
  -Bycrpt
+ 
  -Express
 
  # Approach Taken:
@@ -14,5 +18,7 @@ https://boardsup.herokuapp.com/
 
    # Group Members:
    -Agustin Alvarez
+   
    -Andrew Taghi
+   
    -Xavier Johnson
