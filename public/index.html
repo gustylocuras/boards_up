@@ -39,6 +39,8 @@
 
       <section class="center login" ng-if="ctrl.loggedInUser === false">
 
+        <h3>Demo Account: Username: test & Password: test</h3>
+
         <button class="waves-effect waves-light btn-large" ng-click="ctrl.toggleSignUp()">Sign Up</button>
 
         <form ng-submit="ctrl.signup()" ng-if="ctrl.signUpForm" class="form">
