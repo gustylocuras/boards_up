@@ -4,6 +4,7 @@ const Locations = require('../models/locations.js')
 
 router.post('/', (req, res) => {
   Locations.create(req.body, (err, createdLocation) => {
+    // sends back just the holiday that you created in the database. Specifically used when interacting with Postman and shows you the object you created returned as a json object.
     res.json(createdLocation);
   })
 })

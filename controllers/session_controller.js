@@ -1,10 +1,11 @@
+// Require all of the packages in order to run express, router, and bcyrpt.
 const express = require('express')
 const router= express.Router()
 const User = require('../models/users.js')
 const bcrypt = require('bcrypt')
 
 
-//creates session
+//creates session, determines if the user entered in the correct infromation using bcrypt for the password. If the information is correct it logs the user ing. 
 router.post('/', (req, res) => {
   User.findOne({username:req.body.username}, (err, foundUser) => {
     if(foundUser === null){

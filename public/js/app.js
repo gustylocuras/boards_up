@@ -1,12 +1,18 @@
+// Links the app.js file to the html and allows you to insert angular into the html file directly, takes two params as arguments, the name of your app and an empty array.
 const app = angular.module("MyApp", []);
 
+//app.controller inserts all of the functionality into the webpage, is then called upon in the html file using the {{}}. $http tells the browser to render as an http page
+
 app.controller("MyController", ['$http', function($http) {
+  // createForm is initially set to an empty object and will be what we enter when create a new board item.
     this.createForm = {}
     this.loggedInUser = false;
+    // this.boards is the array of boards that are being displayed on the page from the ng-repeat
     this.boards = [];
     this.newForm = false;
     this.editForm = false;
     this.index = null;
+    // loginForm and signUpForm are both set to false so that the ng-show will hide the forms unless the function to show the forms is accessed.
     this.loginForm = false;
     this.signUpForm = false;
     this.showDirections = false;
@@ -98,6 +104,7 @@ app.controller("MyController", ['$http', function($http) {
 
 
   //signup
+  // Creates a new user to the users database and assigns the values entered in the signupUsername / signupPassword to username / password. Then assings the response.data to the loggedInUser.
     this.signup = function(){
         $http({
           method:'POST',
@@ -174,6 +181,7 @@ app.controller("MyController", ['$http', function($http) {
 
 
     //DELETE
+    // Accesses the id value of the item and assings the delete method to that item. Then returns the getBoard function to display the remaining data to the page.
     this.deleteBoard = (board) => {
       $http({
         method:'DELETE',
@@ -186,6 +194,7 @@ app.controller("MyController", ['$http', function($http) {
     }
 
     //EDIT - PUT
+    // Accesses the id value of the item being edited, manipulates the DOM from the data entered into the input fields and updates the DOM with the new data entered once it is submitted. Then returns the getBoard function to display the data to the page.
     this.editBoard = (board) => {
       $http({
         method:'PUT',
@@ -199,6 +208,7 @@ app.controller("MyController", ['$http', function($http) {
     }
 
     // Create New Board
+    // use ajax to contact the server to make an HTTP request to add the item to the database. Waits for the method, url, and data to post before submitting the response back to the server. It then runs the getBaord function which displays the data onto the page and resets the form to an empty object.
     this.createBoard = () => {
       console.log(this.boards);
       $http({
@@ -214,6 +224,7 @@ app.controller("MyController", ['$http', function($http) {
     }
 
     // Index - Show Items on page as they are created
+    // Gets all of the data from the url /boards and returns the respose.data from the database.
     this.getBoard = () => {
       $http({
         method:'GET',

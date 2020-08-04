@@ -1,12 +1,17 @@
-<!DOCTYPE html>
+<!DOCTYPE html
+<!-- Add the angular app directive using the ng-app and must match the module in the app.js file -->
 <html lang="en" dir="ltr" ng-app="MyApp">
 
   <head>
     <meta charset="utf-8">
     <title>Board's Up</title>
 
+    <!-- Add the AngularJs script tag to import AngularJs -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js" charset="utf-8"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=" defer  ></script>
+
+    <!-- Link to the app.js file -->
 
     <script src="./js/app.js" charset="utf-8"></script>
 
@@ -26,7 +31,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   </head>
 
-
+  <!-- Adds an alias/directive to call upon the MyController function from the app.js file to ctrl-->
 
   <body ng-controller="MyController as ctrl">
     <nav>
@@ -36,12 +41,17 @@
     </nav>
     <div class="container">
 
+      <!-- ctrl links to this in the app.js file -->
+
+      <!-- ng-if determines if the value within the quotes is truthy. If so, it will render or run the function. -->
 
       <section class="center login" ng-if="ctrl.loggedInUser === false">
 
-        <h3>Demo Account: Username: test & Password: test</h3>
+        <!-- <h3 ng-show="ctrl.">Demo Account: Username: test & Password: test</h3> -->
 
         <button class="waves-effect waves-light btn-large" ng-click="ctrl.toggleSignUp()">Sign Up</button>
+
+        <!-- ng-submit will run the function inside of the "" once the form is submitted.  -->
 
         <form ng-submit="ctrl.signup()" ng-if="ctrl.signUpForm" class="form">
           Username: <input type="text" ng-model="ctrl.signupUsername"><br>
@@ -61,11 +71,15 @@
 
     <!-- All you want to add when user is logged in goes down here -->
 
+    <!-- ng-if determines if the value is true or false and will render the data in the DOM. If the value is false it will not render the value in the DOM. NG-Show will still display the data in the DOM however it will not render the data if it is set to false -->
+
 
       <section ng-if="ctrl.loggedInUser !== false">
 
         <div class="welcome">
           <h2>Welcome {{ctrl.loggedInUser.username}}</h2>
+
+          <!-- ng-click will run the logout function when the button is clicked. Will either run the logout function or toggle the new form depending on which button is clicked. -->
 
           <div class="logout-edit">
             <button class="waves-effect waves-light btn red" ng-click="ctrl.logout()">Log Out</button>
@@ -79,6 +93,8 @@
               <input type="text" placeholder="Surf/Skate/Snow" ng-model='searchBox'>
             </label>
 
+        <!-- ng-model matches what is inputed into the models folder in order for the form to submit properly. -->
+
         <form ng-submit="ctrl.createBoard()" ng-show="ctrl.newForm">
           Location Name: <input type="text" ng-model="ctrl.createForm.name" placeholder="Name"><br/>
           Description: <textarea name="description" rows="8" cols="80" ng-model="ctrl.createForm.description"></textarea><br/>
@@ -91,6 +107,8 @@
 
 
         <div class="board-container">
+
+          <!-- ng-repeat loops through the data in this.boards and renders each item as an individual baord. Similar to a for of loop. You can then call upon each index in the database and render specific properties by accessing that properties name, i.e. board.img will render the boards image. -->
 
 
             <div ng-repeat="board in ctrl.boards | filter: searchBox" class="card z-depth-4" style="width: 18rem">
